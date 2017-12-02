@@ -1,19 +1,37 @@
 <template>
   <div class="projects">
-  <h1>{{ message }}</h1>
-  <!-- <router-link to="/projects/add">Add new project</router-link><br> -->
+    <h1>{{ message }}</h1>
 
-  <input type="text" placeholder="name" v-model="name" @change="postPost()">
-  <input type="text" placeholder="description" v-model="description" @change="postPost()">
-  <button @click="sendData()">Add project</button>
+    <button type="button" class="btn btn-success" @click="show()">Add new project</button>
+    <transition name="fade">
+      <div v-if="showAddForm">
+        <input type="text" placeholder="name" v-model="name">
+        <input type="text" placeholder="description" v-model="description">
+        <button @click="sendData()">Add project</button>
+      </div>
+    </transition>
 
-  <table>
-    <tr v-for="(project, index) in projects"  v-bind:project="project" v-bind:index="index" v-bind:key="project.id">
-      <td>{{ project.project_name }}</td>
-      <td><router-link :to="{ name: 'project', params: { id: index } }">View</router-link></td>
-      <td><router-link :to="{ name: 'project', params: { id: index } }">Delete</router-link></td>
-    </tr>
-  </table>
+    <transition name="fade">
+        <div v-if="showTasks">
+          <table class="table table-bordered">
+            <thead>
+              <th>ID</th>
+              <th>name</th>
+              <th>tasks</th>
+              <th>status</th>
+              <th>actions</th>
+            </thead>
+            <tr v-for="(project, index) in projects"  v-bind:project="project" v-bind:index="index" v-bind:key="project.id">
+              <td>{{ project.id }}</td>
+              <td>{{ project.project_name }}</td>
+              <td>#count</td>
+              <td>status</td>
+              <td><router-link :to="{ name: 'project', params: { id: project.id } }">View project</router-link></td>
+            </tr>
+          </table>
+        </div>
+    </transition>
+
   </div>
 </template>
 
@@ -22,6 +40,8 @@ import axios from 'axios'
 
 export default{
   data: () => ({
+    showTasks: true,
+    showAddForm: true,
     message: 'Projects',
     name: '',
     description: '',
@@ -30,7 +50,10 @@ export default{
     errors: []
   }),
   methods:{
-    postPost(){
+    show(){
+      console.log(123)
+      // showAddForm = true
+      // showTasks = false
       //dont know how to set up variables
       // console.log('postBody is used', this.name, this.description)
     },
