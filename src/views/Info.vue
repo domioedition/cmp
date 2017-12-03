@@ -1,27 +1,21 @@
 <template>
   <div class="project" v-if="project">
-    <h1>Project information</h1>
-    <h2>name: {{ project.project_name }}</h2>
-    <h3>{{ project.id }}</h3>
-    <h3>{{ project.project_name }}</h3>
-    <h3>{{ project.project_user_id_creator }}</h3>
+    <h2>{{ project.project_name }}</h2>
+    <p>{{ project.project_description }}</p>
+    <p>{{ project.project_user_id_creator }}</p>
     <p>{{ project.project_description }}</p>
     <hr>
 
-    <input v-model="message" placeholder="отредактируй меня">
-    <p>Введённое сообщение: {{ message }}</p>
 
-    <input type="text" v-model="name"  @change="postPost()"><br>
-    <textarea v-model="description" placeholder="Project description"></textarea><br>
-    <select v-model="selected">
-      <option disabled value="">Change status</option>
-      <option>Active</option>
-      <option>Hold</option>
-      <option>Finish</option>
-    </select>
-    <span>Selected: {{ selected }}</span>
 
-    <!-- <input type="text" v-model="description" @change="postPost()"> -->
+    <div class="form-group">
+      <label>Project title</label><br>
+      <input type="text" v-model="name"  @change="postPost()"><br>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea v-model="description" class="form-control" rows="3" cols="60"></textarea><br>
+    </div>
     <button @click="updateData()" type="button" class="btn btn-primary">Update project</button>
     <button @click="deleteData()" type="button" class="btn btn-danger">Delete project</button>
   </div>
