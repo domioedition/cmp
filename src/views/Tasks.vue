@@ -44,7 +44,7 @@ export default{
 
     this.projectId = this.$route.params.id
     // console.log(this.projectId);
-    axios.get('http://192.168.33.10/public/task').then((response) => {
+    axios.get('http://172.104.252.11/public/task').then((response) => {
       this.tasks = response.data
       // console.log(response)
     }).

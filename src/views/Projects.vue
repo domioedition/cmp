@@ -36,6 +36,7 @@
 </template>
 
 <script>
+
 import axios from 'axios'
 
 export default{
@@ -51,7 +52,7 @@ export default{
   }),
   methods:{
     show(){
-      console.log(123)
+      // console.log(123)
       // showAddForm = true
       // showTasks = false
       //dont know how to set up variables
@@ -61,7 +62,7 @@ export default{
       // console.log(event)
       //Don`t know how it works. Need to investigate
       if(this.name !== ''){
-        this.axios.post('http://192.168.33.10/public/projects', {
+        this.axios.post('http://172.104.252.11/public/projects', {
             project_name: this.name,
             project_description: this.description,
             project_user_id_creator: this.userId
@@ -82,7 +83,7 @@ export default{
     }
   },
   created(){
-    axios.get('http://192.168.33.10/public/projects').then((response) => {
+    axios.get('http://172.104.252.11/public/projects').then((response) => {
       this.projects = response.data
     }).
     catch(e => {

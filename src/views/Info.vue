@@ -20,7 +20,7 @@
       <option>Finish</option>
     </select>
     <span>Selected: {{ selected }}</span>
-    
+
     <!-- <input type="text" v-model="description" @change="postPost()"> -->
     <button @click="updateData()" type="button" class="btn btn-primary">Update project</button>
     <button @click="deleteData()" type="button" class="btn btn-danger">Delete project</button>
@@ -52,7 +52,7 @@
         if(this.name !== ''){
           axios.defaults.withCredentials = false
           var projectId = this.$route.params.id
-          this.axios.put('http://192.168.33.10/public/projects/'+projectId, {
+          this.axios.put('http://172.104.252.11/public/projects/'+projectId, {
             project_name: this.name,
             project_description: this.description,
             project_user_id_creator: this.userId
@@ -72,7 +72,7 @@
       },
       deleteData: function(){
           var projectId = this.$route.params.id
-          this.axios.delete('http://192.168.33.10/public/projects/'+projectId, {
+          this.axios.delete('http://172.104.252.11/public/projects/'+projectId, {
 
           }).then(function (response) {
               alert('Deleted')
@@ -86,7 +86,7 @@
       var projectId = this.$route.params.id
       // var pEdit = this.$route.params.edit
       // console.log(projectId)
-      axios.get('http://192.168.33.10/public/projects/'+projectId).then((response) => {
+      axios.get('http://172.104.252.11/public/projects/'+projectId).then((response) => {
         this.project = response.data
         // console.log(response.data)
         if(this.project){
